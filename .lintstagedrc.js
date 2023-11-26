@@ -12,6 +12,6 @@ module.exports = {
   "*.{js,jsx,ts,tsx}": [
     buildEslintCommand,
     "prettier --write",
-    "jest --bail --findRelatedTests",
+    "jest --bail --findRelatedTests --passWithNoTests",
   ],
 };
