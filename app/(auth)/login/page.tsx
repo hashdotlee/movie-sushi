@@ -8,6 +8,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+const redirectURL =
+  process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_APP_URL
+    : "http://localhost:3000/login/tmdb";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -85,7 +90,7 @@ export default function Login() {
             onClick={() => {
               if (isSuccess && token)
                 router.push(
-                  `https://www.themoviedb.org/authenticate/${token.request_token}?redirect_to=http://localhost:3000/login/tmdb`,
+                  `https://www.themoviedb.org/authenticate/${token.request_token}?redirect_to=${redirectURL}/tmdb`,
                 );
             }}
           >
