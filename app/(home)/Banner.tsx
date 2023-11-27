@@ -6,6 +6,7 @@ import Link from "next/link";
 import NoImage from "../components/NoImage";
 import Slider from "../components/Slider";
 import { TMovie } from "@/interfaces/TMovie";
+import slugify from "slugify";
 
 export default async function Banner() {
   const movies = await useTrendingMovies<TMovie[]>();
@@ -43,7 +44,9 @@ export default async function Banner() {
                   </p>
                   <div className="flex gap-2 mt-4">
                     <Link
-                      href={`/detail/${movie.id}`}
+                      href={`/movie/${slugify(movie.title, { lower: true })}.${
+                        movie.id
+                      }`}
                       className="bg-zinc-200 text-zinc-900 flex gap-2 items-center text-sm lg:text-base xl:text-lg px-4 py-2 rounded-lg"
                     >
                       <InformationCircleIcon className="w-6 h-6" />

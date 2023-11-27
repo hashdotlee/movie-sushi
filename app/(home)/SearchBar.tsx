@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import slugify from "slugify";
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,11 @@ export default function SearchBar() {
               <div
                 key={movie.id}
                 onMouseDown={() => {
-                  router.push(`/detail/${movie.id}`);
+                  router.push(
+                    `/movie/${slugify(movie.title, { lower: true })}.${
+                      movie.id
+                    }`,
+                  );
                 }}
                 className="flex items-center cursor-pointer hover:bg-zinc-800 gap-2 p-2 rounded-xl"
               >

@@ -4,6 +4,7 @@ import { TMovie } from "@/interfaces/TMovie";
 import getMovieImage from "@/lib/getMovieImage";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import slugify from "slugify";
 
 interface MoviePreviewItemProps {
   movie: TMovie;
@@ -17,7 +18,9 @@ export default function MoviePreviewItem({
   return (
     <div
       onClick={() => {
-        router.push(`/detail/${movie.id}`);
+        router.push(
+          `/movie/${slugify(movie.title, { lower: true })}.${movie.id}`,
+        );
       }}
       className="rounded-2xl cursor-pointer overflow-hidden relative border dark:border-zinc-900 shadow-sm flex flex-col"
     >

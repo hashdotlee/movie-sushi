@@ -1,12 +1,6 @@
 import QueryProvider from "@/lib/queryProvider";
-import { Metadata } from "next";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-
-export const metadata: Metadata = {
-  title: "Home Page",
-  description: "A social network for movie lovers",
-};
 
 export default function RootLayout({
   children,

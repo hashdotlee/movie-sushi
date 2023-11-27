@@ -9,7 +9,23 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MovieFriends",
-  description: "A social network for movie lovers",
+  description: "A social network for movie lovers. Join now!",
+  icons: "/favicon.ico",
+  openGraph: {
+    title: "MovieFriends",
+    type: "website",
+    locale: "en_IE",
+    url: "https://ffw-assignment-movie-friends-seven.vercel.app/",
+    siteName: "MovieFriends",
+    images: [
+      {
+        url: "/login_banner.png",
+        width: 800,
+        height: 600,
+        alt: "MovieFriends",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

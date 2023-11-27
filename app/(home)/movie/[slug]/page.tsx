@@ -1,19 +1,56 @@
-import useMovieDetail from "@/hooks/useMovieDetail";
 import CategoryList from "@/app/components/CategoryList";
 import NoImage from "@/app/components/NoImage";
 import SocialList from "@/app/components/SocialList";
+import fetchMovieDetail from "@/hooks/useMovieDetail";
 import getMovieImage from "@/lib/getMovieImage";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  const id = slug.split(".").pop();
+  const movie = await fetchMovieDetail(Number(id));
+  if (!movie)
+    return {
+      title: `MovieFriends`,
+      description: "A social network for movie lovers. Join now!",
+    };
+
+  return {
+    title: `${movie.title} | MovieFriends`,
+    description: movie.overview,
+    keywords: movie?.keywords?.keywords.map((item) => item.name).join(", "),
+    openGraph: {
+      title: `${movie.title} | MovieFriends`,
+      type: "website",
+      locale: "en_IE",
+      url: `https://ffw-assignment-movie-friends-seven.vercel.app/movie/${slug}`,
+      siteName: "MovieFriends",
+      images: [
+        {
+          url: getMovieImage(movie.poster_path) || "/placeholder.png",
+          width: 800,
+          height: 600,
+          alt: movie.title,
+        },
+      ],
+    },
+  };
+}
+
 export default async function MovieDetail({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }) {
-  const { id } = params;
-  const movie = await useMovieDetail(Number(id));
+  const { slug } = params;
+  const id = slug.split(".").pop();
+  const movie = await fetchMovieDetail(Number(id));
 
   if (!movie) return null;
   return (

@@ -2,6 +2,7 @@
 
 import useLogin from "@/hooks/useLogin";
 import useRequestToken from "@/hooks/useRequestToken";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -26,6 +27,9 @@ export default function Login() {
 
   return (
     <div className="flex items-center justify-center h-screen">
+      <Head>
+        <title>MovieFriends | Login</title>
+      </Head>
       <div className="p-4 items-center justify-center w-screen max-w-4xl mx-auto flex gap-8">
         <Image
           src="/login_banner.png"
