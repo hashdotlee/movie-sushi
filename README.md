@@ -21,51 +21,54 @@ pnpm install
 ```bash
 pnpm dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Development guides
 
-- Libraries
-  
-  1. nextjs
-  2. jest/react-testing-library
-  3. tailwindcss
-  4. react-paginate
-  5. react-toastify
-  6. swiper
-  7. axios
-  8. react-query
-  9. mongoose/mongodb
+1. Libraries
 
-- User Interfaces
+- nextjs
+- jest/react-testing-library
+- tailwindcss
+- react-paginate
+- react-toastify
+- swiper
+- axios
+- react-query
+- mongoose/mongodb
 
-   In the `app` folder, I have implemented 7 main routes:  
+2. User Interfaces
 
-   1. Home
-   2. Movie Detail
-   3. Popular Movie
-   4. Upcoming Movie 
-   5. Login 
-   6. Logout 
-   7. Signup
+   In the `app` folder, I have implemented 7 main routes:
 
-   One route link to one page. 
-   You can read more about [Routing]('https://nextjs.org/docs/app/building-your-application/routing')
+- Home
+- Movie Detail
+- Popular Movie
+- Upcoming Movie
+- Login
+- Logout
+- Signup
 
-- APIs
-    I use axios as api client. There are 1 instances create from default axios, `lib/axiosClient`,
-    are using for querying on client side. 
+One route link to one page.
+You can read more about [Routing]('https://nextjs.org/docs/app/building-your-application/routing')
 
-    Using `fetch` to query on the server side with `lib/fetchWrapper`.
+3. APIs
 
-- Tesing
-    Run test cases by command:
+   I use axios as api client. There are 1 instances create from default axios, `lib/axiosClient`,
+   are using for querying on client side.
+
+   Using `fetch` to query on the server side with `lib/fetchWrapper`.
+
+4. Tesing
+
+   Run test cases by command:
 
 ```bash
 pnpm run test
 ```
 
-- Deployment
+5. Deployment
 
 I'm using Vercel to deploy this app. Here is [production]("https://ffw-assignment-movie-friends-seven.vercel.app/")
 
