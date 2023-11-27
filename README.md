@@ -55,8 +55,8 @@ You can read more about [Routing]('https://nextjs.org/docs/app/building-your-app
 
 ### 3.APIs
 
-I use axios as api client. There are 1 instances create from default axios, `lib/axiosClient`,
-are using for querying on client side.
+I use axios as api client. There are 2 instances create from default axios, `lib/axiosClient`,
+are using for querying TMDb data, `lib/defaultClient' for querying API route data.
 
 Using `fetch` to query on the server side with `lib/fetchWrapper`.
 
