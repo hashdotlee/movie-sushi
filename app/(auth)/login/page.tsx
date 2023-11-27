@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 const redirectURL =
   process.env.NODE_ENV === "production"
     ? process.env.NEXT_PUBLIC_APP_URL
-    : "http://localhost:3000/login/tmdb";
+    : "http://localhost:3000/login";
 
 export default function Login() {
   const [email, setEmail] = useState("");

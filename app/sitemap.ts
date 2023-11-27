@@ -1,17 +1,25 @@
 import { TMovie } from "@/interfaces/TMovie";
-import fetchWrapper from "@/lib/fetchWrapper";
 import slugify from "slugify";
 
 const getMovies = async () => {
-  const res = await fetchWrapper("/treanding/movie/week");
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/treanding/movie/week",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+      },
+    },
+  ).then((res) => res.json());
+
   const movies = await res.results;
+
   return movies;
 };
 
 export default async function sitemap() {
-  const movies = await getMovies();
-
-  return [
+  const staticData = [
     {
       url: "https://ffw-assignment-movie-friends-seven.vercel.app/",
       lastModified: new Date(),
@@ -30,6 +38,12 @@ export default async function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+  ];
+  const movies = await getMovies();
+
+  if (!movies) return staticData;
+
+  const dynamicData = [
     ...movies.map((movie: TMovie) => ({
       url: `https://ffw-assignment-movie-friends-seven.vercel.app/movie/${slugify(
         movie.title,
@@ -40,4 +54,6 @@ export default async function sitemap() {
       priority: 0.8,
     })),
   ];
+
+  return [...staticData, ...dynamicData];
 }
