@@ -1,6 +1,6 @@
 "use client";
 
-import useUpcomingMovie from "@/api/useUpcomingMovie";
+import useUpcomingMovie from "@/hooks/useUpcomingMovie";
 import { SortBy } from "@/interfaces/IFilterMovie";
 import MoviePreviewList from "../MoviePreviewList";
 import Pagination from "@/app/components/Pagination";

@@ -1,4 +1,4 @@
-import useMovieDetail from "@/api/useMovieDetail";
+import useMovieDetail from "@/hooks/useMovieDetail";
 import CategoryList from "@/app/components/CategoryList";
 import NoImage from "@/app/components/NoImage";
 import SocialList from "@/app/components/SocialList";

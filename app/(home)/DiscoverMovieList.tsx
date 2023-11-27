@@ -1,6 +1,6 @@
 "use client";
 
-import useDiscoverMovie from "@/api/useDiscoverMovie";
+import useDiscoverMovie from "@/hooks/useDiscoverMovie";
 import { SortBy, TFilterMovie } from "@/interfaces/IFilterMovie";
 import MoviePreviewList from "./MoviePreviewList";
 import Pagination from "../components/Pagination";

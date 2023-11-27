@@ -1,6 +1,6 @@
 "use client";
 
-import useProfile from "@/api/useProfile";
+import useProfile from "@/hooks/useProfile";
 import SlidePage from "@/app/components/SlidePage";
 import {
   Bars3Icon,

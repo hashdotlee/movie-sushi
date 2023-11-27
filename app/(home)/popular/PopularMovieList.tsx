@@ -1,6 +1,6 @@
 "use client";
 
-import usePopularMovie from "@/api/usePopularMovie";
+import usePopularMovie from "@/hooks/usePopularMovie";
 import { SortBy } from "@/interfaces/IFilterMovie";
 import MoviePreviewList from "../MoviePreviewList";
 import Pagination from "@/app/components/Pagination";

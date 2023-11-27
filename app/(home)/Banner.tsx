@@ -1,4 +1,4 @@
-import useTrendingMovies from "@/api/useTrendingMovies";
+import useTrendingMovies from "@/hooks/useTrendingMovies";
 import getMovieImage from "@/lib/getMovieImage";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";

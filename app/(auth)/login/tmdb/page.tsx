@@ -1,6 +1,6 @@
 "use client";
 
-import useLoginTMDB from "@/api/useLoginTMDB";
+import useLoginTMDB from "@/hooks/useLoginTMDB";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 

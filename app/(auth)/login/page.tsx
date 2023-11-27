@@ -1,7 +1,7 @@
 "use client";
 
-import useLogin from "@/api/useLogin";
-import useRequestToken from "@/api/useRequestToken";
+import useLogin from "@/hooks/useLogin";
+import useRequestToken from "@/hooks/useRequestToken";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

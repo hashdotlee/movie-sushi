@@ -1,6 +1,6 @@
 "use client";
 
-import useProfile from "@/api/useProfile";
+import useProfile from "@/hooks/useProfile";
 import { ArrowLeftOnRectangleIcon, Bars3Icon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import Nav from "./Nav";
