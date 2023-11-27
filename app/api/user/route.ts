@@ -1,15 +1,22 @@
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
 import { decodeJwt } from "jose";
-import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     await dbConnect();
-    const token = req.cookies.get("auth-token")!;
+
+    const token = cookies().get("auth-token")!;
+
     if (!token) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Missing credentials" },
+        { status: 404 },
+      );
     }
+
     const decodedToken = decodeJwt<{ session_id: string; id: string }>(
       token.value,
     );
