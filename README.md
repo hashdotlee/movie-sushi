@@ -1,30 +1,72 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Requirement
+
+Assume that you are using linux, mac or windows devices.
+
+- Browser
+- Nodejs (18+)
+- Corepack enabled
+
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
+2. Run the development server:
+
+```bash
+pnpm dev
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development guides
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Libraries
+  
+  1. nextjs
+  2. jest/react-testing-library
+  3. tailwindcss
+  4. react-paginate
+  5. react-toastify
+  6. swiper
+  7. axios
+  8. react-query
+  9. mongoose/mongodb
 
-## Development guides 
+- User Interfaces
 
-- User Interfaces 
-- APIs 
-- Authentication
-- Routing
+   In the `app` folder, I have implemented 7 main routes:  
+
+   1. Home
+   2. Movie Detail
+   3. Popular Movie
+   4. Upcoming Movie 
+   5. Login 
+   6. Logout 
+   7. Signup
+
+   One route link to one page. 
+   You can read more about [Routing]('https://nextjs.org/docs/app/building-your-application/routing')
+
+- APIs
+    I use axios as api client. There are 1 instances create from default axios, `lib/axiosClient`,
+    are using for querying on client side. 
+
+    Using `fetch` to query on the server side with `lib/fetchWrapper`.
+
 - Tesing
+    Run test cases by command:
+
+```bash
+pnpm run test
+```
+
 - Deployment
+
+I'm using Vercel to deploy this app. Here is [production]("https://ffw-assignment-movie-friends-seven.vercel.app/")
+
+## Q&A
