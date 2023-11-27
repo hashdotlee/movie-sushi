@@ -1,6 +1,6 @@
 "use client";
 
-import axiosClient from "@/lib/axios";
+import { defaultClient } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 
 export default function useSignup(onSucess?: () => void) {
@@ -23,7 +23,7 @@ export default function useSignup(onSucess?: () => void) {
       password: string;
       username: string;
     }) =>
-      axiosClient.post("/api/auth/signup", {
+      defaultClient.post("/api/auth/signup", {
         email,
         password,
         username,

@@ -1,4 +1,4 @@
-import axiosClient from "@/lib/axios";
+import { defaultClient } from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 
 export default function useLogin(onSucess?: () => void) {
@@ -13,7 +13,7 @@ export default function useLogin(onSucess?: () => void) {
       if (onSucess) onSucess();
     },
     mutationFn: ({ email, password }: { email: string; password: string }) =>
-      axiosClient.post("/api/auth/login", {
+      defaultClient.post("/api/auth/login", {
         email,
         password,
       }),
