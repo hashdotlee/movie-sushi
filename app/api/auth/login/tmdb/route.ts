@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import { SignJWT } from "jose";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -28,13 +29,20 @@ export async function POST(req: NextRequest) {
       },
     ).then((res) => res.json());
 
-    console.log(session);
-
     const token = await new SignJWT({ session_id: session.session_id })
       .setProtectedHeader({ alg: "HS256" })
       .setExpirationTime("1d")
       .setIssuedAt()
       .sign(new TextEncoder().encode(process.env.JWT_SECRET!));
+
+    cookies().set("auth-token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      domain:
+        process.env.NODE_ENV == "production" ? ".vercel.app" : "localhost",
+      path: "/",
+    });
 
     return NextResponse.json(
       {
@@ -42,9 +50,6 @@ export async function POST(req: NextRequest) {
       },
       {
         status: 200,
-        headers: {
-          "Set-Cookie": `auth-token=${token}; path=/; HttpOnly; SameSite=Strict;`,
-        },
       },
     );
   } catch (error) {

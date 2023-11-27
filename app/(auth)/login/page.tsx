@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ export default function Login() {
   const router = useRouter();
 
   const { login, isPending } = useLogin(() => {
+    toast.success("Logged in successfully");
     router.push("/");
   });
 

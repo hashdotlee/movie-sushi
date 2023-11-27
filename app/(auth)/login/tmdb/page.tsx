@@ -11,6 +11,7 @@ export default function LoginWithTMDB() {
   const { login } = useLoginTMDB(() => {
     router.push("/");
   });
+
   useEffect(() => {
     if (requestToken) {
       login(requestToken);

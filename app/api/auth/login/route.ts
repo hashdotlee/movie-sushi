@@ -1,8 +1,9 @@
 import dbConnect from "@/lib/dbConnect";
 import UserSchema from "@/models/User";
 import { verify } from "argon2";
-import { NextRequest, NextResponse } from "next/server";
 import { SignJWT } from "jose";
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
@@ -37,13 +38,19 @@ export async function POST(req: NextRequest) {
       .setIssuedAt()
       .sign(new TextEncoder().encode(process.env.JWT_SECRET!));
 
+    cookies().set("auth-token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      domain:
+        process.env.NODE_ENV == "production" ? ".vercel.app" : "localhost",
+      path: "/",
+    });
+
     return NextResponse.json(
       { token },
       {
         status: 200,
-        headers: {
-          "Set-Cookie": `auth-token=${token}; path=/; HttpOnly; SameSite=Strict;`,
-        },
       },
     );
   } catch (error) {
