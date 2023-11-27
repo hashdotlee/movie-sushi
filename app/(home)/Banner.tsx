@@ -36,11 +36,11 @@ export default async function Banner() {
                   </p>
                   <p className="xl:text-xl text-lg mt-2">
                     <span className="font-bold">Release:</span>{" "}
-                    {movie.release_date}
+                    {movie?.release_date}
                   </p>
                   <p className="xl:text-xl text-lg mt-2">
                     <span className="font-bold">TMDb:</span>{" "}
-                    {movie.vote_average.toFixed(1)} ⭐
+                    {movie?.vote_average?.toFixed(1)} ⭐
                   </p>
                   <div className="flex gap-2 mt-4">
                     <Link

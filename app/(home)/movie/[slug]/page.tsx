@@ -87,13 +87,19 @@ export default async function MovieDetail({
         <div className="flex flex-col lg:flex-row gap-8 dark:text-zinc-200 w-full">
           <div className=" max-w-prose flex flex-col gap-4 flex-grow">
             <div className="">
-              <h1 className="text-3xl font-bold my-3">{movie.title}</h1>
+              <h1
+                className="text-3xl font-bold my-3"
+                data-testid="movie_detail-title"
+              >
+                {movie.title}
+              </h1>
               <div className="flex gap-1 text-neutral-600 dark:text-zinc-400 items-center text-sm">
                 <div>
-                  {movie.vote_average.toFixed(1)} ⭐ ({movie.vote_count} votes)
+                  {movie?.vote_average?.toFixed(1)} ⭐ ({movie.vote_count}{" "}
+                  votes)
                 </div>
                 <span>&bull;</span>
-                <div>
+                <div data-testid="movie_detail-genre">
                   {movie?.genres?.map((genre, i) => (
                     <Fragment key={i}>
                       <span className="text-sm">{genre.name}</span>
@@ -107,7 +113,12 @@ export default async function MovieDetail({
                   <span>{movie.runtime % 60}m</span>
                 </div>
               </div>
-              <p className="text-sm my-2">{movie.overview}</p>
+              <p
+                className="text-sm my-2"
+                data-testid="movie_detail-description"
+              >
+                {movie.overview}
+              </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold">Cast</h3>
@@ -154,6 +165,7 @@ export default async function MovieDetail({
           <div>
             <h3 className="font-semibold my-2">IMDb</h3>
             <Link
+              data-testid="movie_detail-imdb"
               href={`https://www.imdb.com/title/${movie?.external_ids?.imdb_id}`}
               className="font-semibold flex items-center gap-2 text-blue-800 dark:text-blue-400"
             >
@@ -162,7 +174,7 @@ export default async function MovieDetail({
             <div>
               <h3 className="font-semibold my-2">Budget</h3>
               <p>
-                {movie.budget.toLocaleString("en-US", {
+                {movie?.budget?.toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
                 })}
@@ -170,7 +182,9 @@ export default async function MovieDetail({
             </div>
             <div>
               <h3 className="font-semibold my-2">Release Date</h3>
-              <p>{movie.release_date}</p>
+              <p data-testid="movie_detail-release_date">
+                {movie.release_date}
+              </p>
             </div>
             <div>
               <h3 className="font-semibold my-2">Social</h3>
@@ -178,7 +192,7 @@ export default async function MovieDetail({
             </div>
             <div>
               <h3 className="font-semibold my-2">Popularity</h3>
-              {movie.popularity}
+              <p data-testid="movie_detail-popularity">{movie.popularity}</p>
             </div>
             <div>
               <h3 className="font-semibold mb-2">Keywords</h3>

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Banner from "./Banner";
+import Banner from "@/app/(home)/Banner";
 import DiscoverMovieList from "./DiscoverMovieList";
 
 export const metadata: Metadata = {

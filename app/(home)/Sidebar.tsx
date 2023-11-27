@@ -57,10 +57,7 @@ export default function Sidebar() {
                 ${!collapsed ? "opacity-100" : "opacity-0"}
               `}
               >
-                Movie{" "}
-                <span className="font-semibold p-2 bg-gray-800 rounded-md inline-block text-center text-gray-100 dark:bg-zinc-50 dark:text-zinc-900">
-                  Friends
-                </span>
+                MovieFriends
               </Link>
             </div>
             <Nav isOpen={!collapsed} />
