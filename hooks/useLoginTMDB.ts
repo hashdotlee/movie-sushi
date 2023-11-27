@@ -1,4 +1,4 @@
-import { defaultClient } from "@/lib/axios";
+import axiosClient from "@/lib/axios";
 import { useMutation } from "@tanstack/react-query";
 
 export default function useLoginTMDB(onSucess?: () => void) {
@@ -12,7 +12,7 @@ export default function useLoginTMDB(onSucess?: () => void) {
       if (onSucess) onSucess();
     },
     mutationFn: (requestToken: string) =>
-      defaultClient.post("/api/auth/login/tmdb", {
+      axiosClient.post("/api/auth/login/tmdb", {
         requestToken,
       }),
   });

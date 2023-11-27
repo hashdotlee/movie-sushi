@@ -26,49 +26,49 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Development guides
 
-1. Libraries
+### 1.Libraries
 
-- nextjs
-- jest/react-testing-library
-- tailwindcss
-- react-paginate
-- react-toastify
-- swiper
-- axios
-- react-query
-- mongoose/mongodb
+1.  nextjs
+2.  jest/react-testing-library
+3.  tailwindcss
+4.  react-paginate
+5.  react-toastify
+6.  swiper
+7.  axios
+8.  react-query
+9.  mongoose/mongodb
 
-2. User Interfaces
+### 2.User Interfaces
 
-   In the `app` folder, I have implemented 7 main routes:
+In the `app` folder, I have implemented 7 main routes:
 
-- Home
-- Movie Detail
-- Popular Movie
-- Upcoming Movie
-- Login
-- Logout
-- Signup
+1. Home
+2. Movie Detail
+3. Popular Movie
+4. Upcoming Movie
+5. Login
+6. Logout
+7. Signup
 
 One route link to one page.
 You can read more about [Routing]('https://nextjs.org/docs/app/building-your-application/routing')
 
-3. APIs
+### 3.APIs
 
-   I use axios as api client. There are 1 instances create from default axios, `lib/axiosClient`,
-   are using for querying on client side.
+I use axios as api client. There are 1 instances create from default axios, `lib/axiosClient`,
+are using for querying on client side.
 
-   Using `fetch` to query on the server side with `lib/fetchWrapper`.
+Using `fetch` to query on the server side with `lib/fetchWrapper`.
 
-4. Tesing
+### 4.Tesing
 
-   Run test cases by command:
+Run test cases by command:
 
 ```bash
 pnpm run test
 ```
 
-5. Deployment
+### 5.Deployment
 
 I'm using Vercel to deploy this app. Here is [production]("https://ffw-assignment-movie-friends-seven.vercel.app/")
 
