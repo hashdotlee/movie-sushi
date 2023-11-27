@@ -1,26 +1,19 @@
-"use client";
-
-import useCredits from "@/api/useCredit";
-import useExternalIds from "@/api/useExternalIds";
-import useKeywords from "@/api/useKeywords";
 import useMovieDetail from "@/api/useMovieDetail";
-import useVideos from "@/api/useVideos";
 import CategoryList from "@/app/components/CategoryList";
 import NoImage from "@/app/components/NoImage";
 import SocialList from "@/app/components/SocialList";
 import getMovieImage from "@/lib/getMovieImage";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { Fragment } from "react";
 
-export default function MovieDetail() {
-  const { id } = useParams();
-  const { movie } = useMovieDetail(Number(id));
-  const { credits } = useCredits(Number(id));
-  const { keywords } = useKeywords(Number(id));
-  const { videos } = useVideos(Number(id));
-  const { externalIds } = useExternalIds(Number(id));
+export default async function MovieDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = params;
+  const movie = await useMovieDetail(Number(id));
 
   if (!movie) return null;
   return (
@@ -64,11 +57,11 @@ export default function MovieDetail() {
                 </div>
                 <span>&bull;</span>
                 <div>
-                  {movie.genres.map((genre, i) => (
-                    <div key={genre.id}>
+                  {movie?.genres?.map((genre, i) => (
+                    <Fragment key={i}>
                       <span className="text-sm">{genre.name}</span>
                       {i < movie.genres.length - 1 && <span>, </span>}
-                    </div>
+                    </Fragment>
                   ))}
                 </div>
                 <span>&bull;</span>
@@ -82,7 +75,7 @@ export default function MovieDetail() {
             <div>
               <h3 className="text-lg font-semibold">Cast</h3>
               <div className="flex gap-2 p-4">
-                {credits?.cast?.slice(0, 5)?.map((cast) => (
+                {movie?.credits?.cast?.slice(0, 5)?.map((cast) => (
                   <div
                     key={cast.id}
                     className="flex w-1/5 text-center flex-col items-center"
@@ -107,7 +100,7 @@ export default function MovieDetail() {
               <h3 className="text-lg font-semibold my-3">Videos</h3>
               <div className=" overflow-x-scroll">
                 <div className="flex gap-4">
-                  {videos?.results?.map((video) => (
+                  {movie?.videos?.results?.map((video) => (
                     <iframe
                       key={video.id}
                       src={`https://www.youtube.com/embed/${video.key}`}
@@ -124,7 +117,7 @@ export default function MovieDetail() {
           <div>
             <h3 className="font-semibold my-2">IMDb</h3>
             <Link
-              href={`https://www.imdb.com/title/${externalIds?.imdb_id}`}
+              href={`https://www.imdb.com/title/${movie?.external_ids?.imdb_id}`}
               className="font-semibold flex items-center gap-2 text-blue-800 dark:text-blue-400"
             >
               <Image src="/imdb-icon.svg" width={48} height={48} alt="imdb" />
@@ -144,7 +137,7 @@ export default function MovieDetail() {
             </div>
             <div>
               <h3 className="font-semibold my-2">Social</h3>
-              <SocialList externalIds={externalIds} />
+              <SocialList externalIds={movie?.external_ids} />
             </div>
             <div>
               <h3 className="font-semibold my-2">Popularity</h3>
@@ -153,10 +146,12 @@ export default function MovieDetail() {
             <div>
               <h3 className="font-semibold mb-2">Keywords</h3>
               <CategoryList
-                categories={keywords?.keywords.slice(0, 10).map((item) => ({
-                  ...item,
-                  value: item.name,
-                }))}
+                categories={
+                  movie?.keywords?.keywords?.slice(0, 10).map((item) => ({
+                    ...item,
+                    value: item.name,
+                  })) || []
+                }
               />
             </div>
           </div>

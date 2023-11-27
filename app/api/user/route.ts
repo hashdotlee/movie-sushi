@@ -7,6 +7,9 @@ export async function GET(req: NextRequest) {
   try {
     await dbConnect();
     const token = req.cookies.get("auth-token")!;
+    if (!token) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
     const decodedToken = decodeJwt<{ session_id: string; id: string }>(
       token.value,
     );

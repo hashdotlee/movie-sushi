@@ -1,3 +1,8 @@
+import { TCredit } from "./TCredit";
+import { TExternalId } from "./TExternalId";
+import { TKeyword } from "./TKeyword";
+import { TVideo } from "./TVideos";
+
 export type TMovie = {
   adult: boolean;
   backdrop_path: string;
@@ -22,6 +27,7 @@ export type TMovieDetail = {
   budget: number;
   genres: { id: number; name: string }[];
   homepage: string;
+  credits?: TCredit;
   id: number;
   imdb_id: string;
   original_language: string;
@@ -44,6 +50,9 @@ export type TMovieDetail = {
   tagline: string;
   title: string;
   video: boolean;
+  videos?: { results: TVideo[] };
+  keywords?: { keywords: TKeyword[] };
+  external_ids?: TExternalId;
   vote_average: number;
   vote_count: number;
 };

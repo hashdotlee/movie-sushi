@@ -5,13 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import NoImage from "../components/NoImage";
 import Slider from "../components/Slider";
+import { TMovie } from "@/interfaces/TMovie";
 
-export default function Banner() {
-  const { movies } = useTrendingMovies();
+export default async function Banner() {
+  const movies = await useTrendingMovies<TMovie[]>();
   return (
     <div className="max-h-[80vh] relative overflow-hidden">
       <Slider
-        slides={movies?.results?.map((movie) =>
+        slides={movies?.map((movie) =>
           movie.backdrop_path ? (
             <div key={movie.id}>
               <Image

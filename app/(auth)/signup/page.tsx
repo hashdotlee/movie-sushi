@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const router = useRouter();
@@ -12,7 +13,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signup } = useSignup(() => router.push("/login"));
+  const { signup, isPending } = useSignup(() => {
+    toast.success("Account created successfully! Please login.");
+    router.push("/login");
+  });
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -71,7 +75,9 @@ export default function Login() {
             </label>
           </div>
           <button
-            className="px-4 py-3 bg-gray-900 text-white rounded-lg font-semibold"
+            className={`px-4 py-3 bg-gray-900 text-white rounded-lg font-semibold
+            ${isPending ? "opacity-50 cursor-not-allowed" : ""}
+            `}
             onClick={() => {
               signup({ username, email, password });
             }}

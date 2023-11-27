@@ -16,7 +16,7 @@ defaultClient.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.data) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.error);
     } else toast.error("Something went wrong");
     throw error;
   },
@@ -39,7 +39,7 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.data) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.error);
     } else toast.error("Something went wrong");
     throw error;
   },

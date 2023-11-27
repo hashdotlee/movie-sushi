@@ -8,9 +8,13 @@ function useLogout() {
     const logout = async () => {
       await defaultClient.post("/api/auth/logout");
     };
-    logout().then(() => {
-      router.push("/");
-    });
+    logout()
+      .then(() => {
+        router.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 }
 

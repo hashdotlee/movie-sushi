@@ -1,12 +1,10 @@
 import { TMovieDetail } from "@/interfaces/TMovie";
-import axiosClient from "@/lib/axios";
-import { useQuery } from "@tanstack/react-query";
+import fetchWrapper from "@/lib/fetchWrapper";
 
-export default function useMovieDetail(id: number) {
-  const { data: movie } = useQuery<TMovieDetail>({
-    queryKey: ["movie", id],
-    enabled: !!id,
-    queryFn: () => axiosClient.get(`/movie/${id}`),
-  });
-  return { movie };
+export default async function useMovieDetail(id: number) {
+  if (!id) return null;
+  const movie = await fetchWrapper(
+    `/movie/${id}?append_to_response=videos,genres,keywords,external_ids,credits`,
+  ).then((res) => res as TMovieDetail);
+  return movie;
 }

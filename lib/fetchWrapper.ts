@@ -1,18 +1,19 @@
-export default function fetchWrapper(url: string, options?: any) {
-  const baseUrl = "https://api.themoviedb.org/3";
+export default async function fetchWrapper(url: string, options?: any) {
   const defaultOptions = {
-    url: baseUrl + url,
+    url: process.env.NEXT_PUBLIC_API_URL + url,
     method: "GET",
+    credentials: "include",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.API_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
     },
   };
-  return fetch({ ...defaultOptions, ...options })
+  const res = await fetch(defaultOptions.url, { ...defaultOptions, ...options })
     .then((response) => {
       return response.json();
     })
     .catch((error) => {
       console.log(error);
     });
+  return res;
 }

@@ -7,6 +7,7 @@ export default function useSignup(onSucess?: () => void) {
   const {
     mutate: signup,
     data,
+    isPending,
     error,
   } = useMutation({
     mutationKey: ["signup"],
@@ -28,5 +29,5 @@ export default function useSignup(onSucess?: () => void) {
         username,
       }),
   });
-  return { signup, data, error };
+  return { signup, isPending, data, error };
 }

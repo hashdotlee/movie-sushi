@@ -1,3 +1,5 @@
+"use client";
+
 // import Swiper core and required modules
 import { A11y, Thumbs, Pagination, Scrollbar, Autoplay } from "swiper/modules";
 
@@ -26,8 +28,6 @@ export default function Slider({ slides = [] }: SliderProps) {
       className="w-full h-full"
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       {slides.map((slide, i) => (
         <SwiperSlide key={`slide-${i}`}>{slide}</SwiperSlide>

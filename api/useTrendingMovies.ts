@@ -1,11 +1,8 @@
-import { TMovie } from "@/interfaces/TMovie";
-import axiosClient from "@/lib/axios";
-import { useQuery } from "@tanstack/react-query";
+import fetchWrapper from "@/lib/fetchWrapper";
 
-export default function useTrendingMovies() {
-  const { data: movies } = useQuery<{ results: TMovie[] }>({
-    queryKey: ["trending"],
-    queryFn: () => axiosClient.get("/trending/movie/week"),
-  });
-  return { movies };
+export default async function useTrendingMovies<T>() {
+  const movies = await fetchWrapper("/trending/movie/week").then(
+    (res) => res.results,
+  );
+  return movies as T;
 }

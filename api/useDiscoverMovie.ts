@@ -7,15 +7,16 @@ import { useState } from "react";
 function useDiscoverMovie(initFilter: TFilterMovie) {
   const [filter, setFilter] = useState<TFilterMovie>(initFilter);
 
-  const { data: movies = { results: [] } } = useQuery<{ results: TMovie[] }>({
-    queryKey: ["movies", filter],
-    queryFn: () =>
-      axiosClient.get(`/discover/movie`, {
-        params: filter,
-      }),
-  });
+  const { isFetching, data: movies = { results: [], total_pages: 0 } } =
+    useQuery<{ results: TMovie[]; total_pages: number }>({
+      queryKey: ["movies", filter],
+      queryFn: () =>
+        axiosClient.get(`/discover/movie`, {
+          params: filter,
+        }),
+    });
 
-  return { movies, setFilter, filter };
+  return { movies, setFilter, filter, isFetching };
 }
 
 export default useDiscoverMovie;
